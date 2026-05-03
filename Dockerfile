@@ -45,6 +45,16 @@ RUN wget -qO - https://mirror.mwt.me/shiftkey-desktop/gpgkey | gpg --dearmor | t
 RUN sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/mwt-desktop.gpg] https://mirror.mwt.me/shiftkey-desktop/deb/ any main" > /etc/apt/sources.list.d/mwt-desktop.list'
 RUN apt update && apt install -y github-desktop
 
+### Containers (Docker / Podman)
+# Alias for real docker => 'rdocker'
+RUN echo 'alias "rdocker=host-spawn pkexec docker"' >> /etc/bash.bashrc
+# Alias for host podman
+RUN echo 'alias "podman=host-spawn podman"' >> /etc/bash.bashrc
+# Install docker + docker compose cli in container via get.docker.com script. Then make it use podman socket from host
+RUN curl -fsSL https://get.docker.com | sh
+ENV DOCKER_HOST=unix:///run/user/1000/podman/podman.sock
+RUN echo 'export DOCKER_HOST=unix:///run/user/1000/podman/podman.sock' >> /etc/bash.bashrc
+
 ### Comfortability tools (Shell prompt, zoxide, etc...)
 RUN curl -sS https://starship.rs/install.sh | sh -s -- -y
 RUN cargo install zoxide --locked
