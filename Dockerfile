@@ -14,6 +14,8 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | UV_INSTALL_DIR=/usr/local/bin s
 # JavaScript
 RUN curl -fsSL https://bun.sh/install | BUN_INSTALL=/usr/local bash
 RUN curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+RUN nvm install && nvm use
+RUN npm i -g pnpm
 
 # Rust (via rustup.rs)
 ENV RUSTUP_HOME=/usr/local/rustup
@@ -51,6 +53,9 @@ RUN cargo install zoxide --locked
 # Extend .bashrc (or similar)
 RUN echo 'eval "$(starship init bash)"' >> /etc/bash.bashrc
 RUN echo 'eval "$(zoxide init bash)"' >> /etc/bash.bashrc
+# Adapt bashrc to support nvm
+RUN echo 'export NVM_DIR="$HOME/.nvm"' >> /etc/bash.bashrc
+RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> /etc/bash.bashrc
 
 
 ### Aliases
