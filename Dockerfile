@@ -14,3 +14,10 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | UV_INSTALL_DIR=/usr/local/bin s
 # JavaScript
 RUN curl -fsSL https://bun.sh/install | BUN_INSTALL=/usr/local bash
 RUN curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+
+
+### Comfortability tools (Shell prompt, zoxide, etc...)
+RUN apt install starship zoxide
+# Extend .bashrc (or similar)
+RUN echo 'eval "$(starship init bash)"' >> /etc/bash.bashrc
+RUN echo 'eval "$(zoxide init bash)"' >> /etc/bash.bashrc
