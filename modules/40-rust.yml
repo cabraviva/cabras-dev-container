@@ -1,5 +1,0 @@
-name: rust
-type: apt
-source:
-  packages:
-  - rust-all

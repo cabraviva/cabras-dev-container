@@ -1,5 +1,0 @@
-name: python
-type: apt
-source:
-  packages:
-  - python3
