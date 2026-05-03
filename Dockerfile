@@ -36,7 +36,7 @@ RUN mkdir -p /etc/apt/keyrings \
 
 ### Comfortability tools (Shell prompt, zoxide, etc...)
 RUN curl -sS https://starship.rs/install.sh | sh -s -- -y
-RUN apt install -y zoxide
+RUN cargo install zoxide --locked
 # Extend .bashrc (or similar)
 RUN echo 'eval "$(starship init bash)"' >> /etc/bash.bashrc
 RUN echo 'eval "$(zoxide init bash)"' >> /etc/bash.bashrc
