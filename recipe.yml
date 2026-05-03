@@ -17,18 +17,13 @@ stages:
           echo 'APT::Install-Recommends "0";' >
           /etc/apt/apt.conf.d/01norecommends
     modules:
-      - name: packages-modules
-        type: includes
-        includes:
-          - modules/00-basics.yml
-        modules:
-          - name: basics
-            type: apt
-            source:
-              packages:
-                - curl
-                - git
-                - ssh
-                - wget
-                - nano
+      - name: basics
+        type: apt
+        source:
+          packages:
+            - curl
+            - git
+            - ssh
+            - wget
+            - nano
 repo: cabraviva/cabras-dev-container
