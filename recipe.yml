@@ -18,11 +18,11 @@ stages:
           /etc/apt/apt.conf.d/01norecommends
     modules:
       - name: packages
-            type: apt
-            source:
-              packages:
-                - python3
-                - neofetch
-                - git
-                
+        type: apt
+        source:
+          packages:
+            - python3
+            - neofetch
+            - git
+
 repo: cabraviva/cabras-dev-container
