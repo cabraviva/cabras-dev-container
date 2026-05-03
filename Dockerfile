@@ -14,6 +14,9 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | UV_INSTALL_DIR=/usr/local/bin s
 # JavaScript
 RUN curl -fsSL https://bun.sh/install | BUN_INSTALL=/usr/local bash
 RUN curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+ENV NVM_DIR="$HOME/.nvm"
+RUN [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+RUN [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 RUN nvm install && nvm use
 RUN npm i -g pnpm
 
@@ -56,7 +59,7 @@ RUN echo 'eval "$(zoxide init bash)"' >> /etc/bash.bashrc
 # Adapt bashrc to support nvm
 RUN echo 'export NVM_DIR="$HOME/.nvm"' >> /etc/bash.bashrc
 RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> /etc/bash.bashrc
-
+RUN echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> /etc/bash.bashrc
 
 ### Aliases
 RUN echo 'alias "ll=ls -la"' >> /etc/bash.bashrc
