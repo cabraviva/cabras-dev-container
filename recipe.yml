@@ -5,7 +5,7 @@ vibversion: 1.1.0
 
 stages:
   - id: build
-    base: ghcr.io/vanilla-os/pico:main
+    base: debian:stable
     singlelayer: false
     labels:
       maintainer: CabraViva
@@ -17,8 +17,12 @@ stages:
           echo 'APT::Install-Recommends "0";' >
           /etc/apt/apt.conf.d/01norecommends
     modules:
-      - name: packages-modules
-        type: includes
-        includes:
-          - modules/00-basics.yml
-repo: vanilla-os/dev-image
+      - name: packages
+            type: apt
+            source:
+              packages:
+                - python3
+                - neofetch
+                - git
+                
+repo: cabraviva/cabras-dev-container
