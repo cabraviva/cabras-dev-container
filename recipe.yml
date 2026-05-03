@@ -1,6 +1,8 @@
 # vib
 name: Cabras Dev Container
-id: cdc
+id: cabras-dev-container
+vibversion: 1.1.0
+
 stages:
   - id: build
     base: ghcr.io/vanilla-os/pico:main
