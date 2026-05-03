@@ -4,7 +4,7 @@ RUN apt update
 RUN apt upgrade -y
 
 # Basic packages
-RUN apt install -y git fastfetch curl wget vim nano bat gnupg2 zip unzip build-essential gnupg ca-certificates apt-transport-https ifconfig dnsutils
+RUN apt install -y git fastfetch curl wget vim nano bat gnupg2 zip unzip build-essential gnupg ca-certificates apt-transport-https net-tools dnsutils
 
 ### Programming languages
 # Python
