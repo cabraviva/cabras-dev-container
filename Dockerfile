@@ -40,6 +40,11 @@ RUN mkdir -p /etc/apt/keyrings \
     && apt-get install -y gh \
     && rm -rf /var/lib/apt/lists/*
 
+# GitHub Desktop (via shiftkey)
+RUN wget -qO - https://apt.packages.shiftkey.dev/gpg.key | gpg --dearmor | tee /usr/share/keyrings/shiftkey-packages.gpg > /dev/null
+RUN sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/shiftkey-packages.gpg] https://apt.packages.shiftkey.dev/ubuntu/ any main" > /etc/apt/sources.list.d/shiftkey-packages.list'
+RUN apt update && apt install -y github-desktop
+
 ### Comfortability tools (Shell prompt, zoxide, etc...)
 RUN curl -sS https://starship.rs/install.sh | sh -s -- -y
 RUN cargo install zoxide --locked
