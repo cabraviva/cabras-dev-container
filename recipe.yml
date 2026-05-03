@@ -1,0 +1,21 @@
+name: Cabras Dev Container
+id: cdc
+stages:
+  - id: build
+    base: ghcr.io/vanilla-os/pico:main
+    singlelayer: false
+    labels:
+      maintainer: CabraViva
+    args:
+      DEBIAN_FRONTEND: noninteractive
+    runs:
+      commands:
+        - >-
+          echo 'APT::Install-Recommends "0";' >
+          /etc/apt/apt.conf.d/01norecommends
+    modules:
+      - name: packages-modules
+        type: includes
+        includes:
+          - modules/00-basics.yml
+repo: vanilla-os/dev-image

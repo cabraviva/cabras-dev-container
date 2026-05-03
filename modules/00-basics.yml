@@ -1,0 +1,11 @@
+name: basics
+type: apt
+source:
+  packages:
+    - curl
+    - git
+    - ssh
+    - wget
+    - nano
+    - vim
+    - neofetch
