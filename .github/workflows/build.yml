@@ -20,12 +20,8 @@ jobs:
         steps:
             - uses: actions/checkout@v6
 
-            - uses: vanilla-os/vib-gh-action@v1.1.0
-              with:
-                  recipe: "recipe.yml"
-
             - name: Build the Docker image
-              run: docker image build -f Containerfile --tag
+              run: docker image build -f Dockerfile --tag
                   ghcr.io/cabraviva/cabras-dev-container:main .
 
             # Push the image to GHCR (Image Registry)
