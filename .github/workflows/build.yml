@@ -1,0 +1,32 @@
+name: Vib Build
+
+on:
+    push:
+        branches: [ "main" ]
+    workflow_dispatch:
+
+env:
+    REGISTRY_USER: ${{ github.actor }}
+    REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v6
+
+            - uses: vanilla-os/vib-gh-action@v1.1.0
+              with:
+                  recipe: "recipe.yml"
+
+            - name: Build the Docker image
+              run: docker image build -f Containerfile --tag
+                  ghcr.io/cabraviva/cabras-dev-container:main .
+
+            # Push the image to GHCR (Image Registry)
+            - name: Push To GHCR
+              if: github.repository == 'cabraviva/cabras-dev-container'
+              run: |
+                  docker login ghcr.io -u ${{ env.REGISTRY_USER }} -p ${{ env.REGISTRY_PASSWORD }}
+                  docker image push "ghcr.io/cabraviva/cabras-dev-container:main"
