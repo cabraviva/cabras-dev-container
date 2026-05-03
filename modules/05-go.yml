@@ -1,0 +1,5 @@
+name: go
+type: apt
+source:
+  packages:
+  - golang-1.22-go
