@@ -82,6 +82,5 @@ stages:
           #- lpkg --lock
           - rm -rf /tmp/*
           - rm -rf /var/tmp/*
-          - rm -rf /sources
 
 repo: cabraviva/cabras-dev-container
