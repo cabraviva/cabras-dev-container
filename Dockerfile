@@ -14,11 +14,6 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | UV_INSTALL_DIR=/usr/local/bin s
 # JavaScript
 RUN curl -fsSL https://bun.sh/install | BUN_INSTALL=/usr/local bash
 RUN curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-ENV NVM_DIR="/root/.nvm"
-RUN [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-RUN [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-RUN nvm install && nvm use
-RUN npm i -g pnpm
 
 # Rust (via rustup.rs)
 ENV RUSTUP_HOME=/usr/local/rustup
