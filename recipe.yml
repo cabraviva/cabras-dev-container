@@ -20,7 +20,7 @@ stages:
       - name: init-setup
         type: shell
         commands:
-          - lpkg --unlock
+          #- lpkg --unlock
           - apt-get update
 
       - name: install-docker
@@ -79,7 +79,7 @@ stages:
         commands:
           - apt-get autoremove -y
           - apt-get clean
-          - lpkg --lock
+          #- lpkg --lock
           - rm -rf /tmp/*
           - rm -rf /var/tmp/*
           - rm -rf /sources
