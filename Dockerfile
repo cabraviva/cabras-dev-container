@@ -22,6 +22,9 @@ ENV PATH=/usr/local/cargo/bin:$PATH
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
 RUN echo 'source "/usr/local/cargo/env"' >> /etc/bash.bashrc
 RUN rustc --version && cargo --version
+RUN rustup component add rust-analyzer rust-analyzer
+RUN rustup component add rust-analyzer rust-src
+RUN chown -R 1000:1000 /usr/local/cargo /usr/local/rustup
 
 ### Dev Tools & IDE
 # VS Code
