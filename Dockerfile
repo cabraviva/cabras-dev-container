@@ -20,6 +20,8 @@ ENV RUSTUP_HOME=/usr/local/rustup
 ENV CARGO_HOME=/usr/local/cargo
 ENV PATH=/usr/local/cargo/bin:$PATH
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+RUN source "/usr/local/cargo/env"
+RUN echo 'source "/usr/local/cargo/env"' >> /etc/bash.bashrc
 RUN rustc --version && cargo --version
 
 ### Dev Tools & IDE
