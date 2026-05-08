@@ -49,6 +49,9 @@ RUN wget -qO - https://mirror.mwt.me/shiftkey-desktop/gpgkey | gpg --dearmor | t
 RUN sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/mwt-desktop.gpg] https://mirror.mwt.me/shiftkey-desktop/deb/ any main" > /etc/apt/sources.list.d/mwt-desktop.list'
 RUN apt update && apt install -y github-desktop
 
+# httpie
+RUN apt install httpie
+
 ### Containers (Docker / Podman)
 # Alias for real docker => 'rdocker'
 RUN echo 'alias "rdocker=host-spawn pkexec docker"' >> /etc/bash.bashrc
